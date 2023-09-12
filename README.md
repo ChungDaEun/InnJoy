@@ -39,3 +39,19 @@
     
     - Ajax
     - Mail 발송
+
+## 👀 서비스 화면 (로그인 / 메인화면)
+
+### 로그인
+![image](https://github.com/ChungDaEun/InnJoy/assets/144768427/21d18ec9-a70e-4006-9c66-f78424d708bf)
+
+
+### 메인1
+![image](https://github.com/ChungDaEun/InnJoy/assets/144768427/fc00215f-a0bc-4bf5-87d5-44fae9c21414)
+
+
+### 메인2
+![image](https://github.com/ChungDaEun/InnJoy/assets/144768427/f8c454b1-b0dd-4ea5-b117-1690a59d2d62)
+
+
+---
