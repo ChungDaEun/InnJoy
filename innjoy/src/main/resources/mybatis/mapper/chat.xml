@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
+<mapper namespace="com.web.innjoy.dao.ChatDao">
+
+	<resultMap type ="ChatUser" id = "cu">
+		<association property="user" javaType="User">
+			<id column="user_id" property="user_id"/>
+			<result column="user_pass" property="user_pass"/>
+			<result column="user_name" property="user_name"/>
+			<result column="user_phone" property="user_phone"/>
+			<result column="email" property="email"/>
+			<result column="n_name" property="n_name"/>
+			<result column="auth" property="auth"/>
+		</association>
+		<association property="chatRoom" javaType="ChatRoom">
+			<id column="room_id" property="room_id"/>
+			<result column="se_user" property="se_user"/>
+			<result column="re_user" property="re_user"/>
+		</association>
+	</resultMap>
+
+    <!-- 룸 리스트 사업자 -->
+    <select id="getChatRoomsByReceiverUser" resultMap="cu">
+	    SELECT cr.*, iu.USER_NAME FROM CHAT_ROOM cr
+	    INNER JOIN IJ_USER iu ON iu.USER_ID = cr.SE_USER 
+	    WHERE cr.RE_USER = #{re_user}
+    </select>
+    
+    <resultMap type ="ChatBsn" id = "cb">
+		<association property="bsn_user" javaType="Bsn_user">
+			<id column="bsn_id" property="bsn_id"/>
+			<result column="ceo_name" property="ceo_name"/>
+		</association>
+		<association property="chatRoom" javaType="ChatRoom">
+			<id column="room_id" property="room_id"/>
+			<result column="se_user" property="se_user"/>
+			<result column="re_user" property="re_user"/>
+		</association>
+	</resultMap>
+    
+    <!-- 룸 리스트 일반회원 -->
+     <select id="getChatRoomsByReceiverUser2" resultMap="cb">
+    SELECT cr.*, bu.CEO_NAME FROM CHAT_ROOM cr
+    INNER JOIN BSN_USER bu ON bu.BSN_ID = cr.RE_USER 
+    WHERE cr.SE_USER = #{se_user}
+    </select> 
+      
+    <!-- 룸id에 해당하는 채팅방 -->
+    <select id="getChatRoomByRoomId" resultType="ChatRoom">
+	    SELECT * FROM chat_room WHERE room_id = #{room_id}
+	</select>
+	
+	<!-- 룸id에 해당하는 채팅 갖고오기 -->
+    <select id="getChatMessagesByRoomId" resultType="ChatMessage">
+		SELECT * FROM chat_message WHERE room_id = #{room_id}
+		ORDER BY id ASC  
+    </select>
+    
+    <!-- 메세지 저장 -->
+	<insert id="saveChatMessage" parameterType="ChatMessage">
+		INSERT INTO chat_message (id, room_id, sender, message) 
+		VALUES (chat_message_se.nextval, #{room_id}, #{sender}, #{message})
+	</insert>	
+	
+	<!-- 일반회원 채팅방 입장 -->
+	<select id="getChatRoomByUsers" resultType="ChatRoom">
+	    SELECT * FROM chat_room
+	    WHERE se_user = #{se_user} AND re_user = #{re_user}
+	</select>
+    
+    <!-- 일반회원 채팅방 생성 -->
+    <insert id="createChatRoom" parameterType="ChatRoom">
+        <selectKey keyProperty="room_id" order="BEFORE" resultType="int">
+            SELECT chat_room_se.nextval AS room_id FROM dual
+        </selectKey>
+        INSERT INTO chat_room (se_user, re_user, room_id) 
+        VALUES (#{se_user}, #{re_user}, #{room_id})
+    </insert>
+    
+    <update id="exitChatRoom" parameterType="java.util.Map">
+	    UPDATE chat_message
+	    SET sender = #{sender}
+	    WHERE room_id = #{room_id}
+	</update>
+	
+	<resultMap type ="ProductBsn" id = "pb">
+		<association property="bsn_user" javaType="Bsn_user">
+			<id column="bsn_id" property="bsn_id"/>
+			<result column="ceo_name" property="ceo_name"/>
+		</association>
+		<association property="product" javaType="Product">
+			<id column="pro_id" property="pro_id"/>
+			<result column="bsn_id" property="bsn_id"/>
+			<result column="pro_type_id" property="pro_type_id"/>
+			<result column="pro_name" property="pro_name"/>
+			<result column="pro_loc" property="pro_loc"/>
+			<result column="basic_info" property="basic_info"/>
+			<result column="res_ann" property="res_ann"/>
+			<result column="ser_conts" property="ser_conts"/>
+		</association>
+	</resultMap>
+
+    <!-- ceo_name 찾기 -->
+    <select id="FindCeoName" resultMap="pb">
+	    SELECT ceo_name FROM BSN_USER bu 
+	    INNER JOIN PRODUCT p ON p.BSN_ID = bu.BSN_ID 
+	    WHERE p.PRO_ID = #{pro_id}
+    </select>
+    
+    
+</mapper>

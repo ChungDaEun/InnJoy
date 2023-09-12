@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="product" type="com.web.innjoy.vo.Product"/>
+		<typeAlias alias="room" type="com.web.innjoy.vo.Room"/>
+		<typeAlias alias="bsn_user" type="com.web.innjoy.vo.Bsn_user"/>
+		<typeAlias alias="ProRoom" type="com.web.innjoy.vo.ProRoom"/> <!-- 소정 : 추가된 것 -->
+		<typeAlias alias="ProductRoom" type="com.web.innjoy.vo.ProductRoom"/> <!-- 내가 추가한 것 -->
+		<typeAlias alias="reservation" type="com.web.innjoy.vo.Reservation"/>
+		<typeAlias alias="res_cancle" type="com.web.innjoy.vo.Res_cancle"/>
+		<typeAlias alias="user" type="com.web.innjoy.vo.User"/>
+		<typeAlias alias="resUser" type="com.web.innjoy.vo.ResUser"/> <!-- 내가 추가한 것 -->
+		<typeAlias alias="wish" type="com.web.innjoy.vo.Wish"/> <!-- 내가 추가한 것 -->
+		<typeAlias alias="wishpropimg" type="com.web.innjoy.vo.WishProPimg"/> <!-- 내가 추가한 것 -->
+		
+		
+		<typeAlias alias="productsch" type="com.web.innjoy.vo.ProductSch"/><!-- 소정 : 추가된 것 -->
+		<typeAlias alias="bsnreviewmng" type="com.web.innjoy.vo.BsnReviewMng"/>	<!--소정 : 추가된 것 -->
+		<typeAlias alias="review" type="com.web.innjoy.vo.Review"/>	
+		
+		<typeAlias alias="chatRoom" type="com.web.innjoy.vo.ChatRoom"/>	
+		<typeAlias alias="chatMessage" type="com.web.innjoy.vo.ChatMessage"/>	
+		
+		<typeAlias alias="notice" type="com.web.innjoy.vo.Notice"/>
+      	<typeAlias alias="noticesch" type="com.web.innjoy.vo.NoticeSch"/> <!-- 예나 : 추가된 것 -->
+      	<typeAlias alias="noticefile" type="com.web.innjoy.vo.NoticeFile"/> <!-- 예나 : 추가된 것 -->
+      	<typeAlias alias="monthlyr" type="com.web.innjoy.vo.MonthlyR"/> <!-- 예나 : 추가된 것 -->
+      	<typeAlias alias="prodr" type="com.web.innjoy.vo.ProdR"/> <!-- 예나 : 추가된 것 -->
+		<typeAlias alias="review_comm" type="com.web.innjoy.vo.Review_comm"/>
+		<typeAlias alias="pro_img" type="com.web.innjoy.vo.Pro_img"/>
+		<typeAlias alias="room_img" type="com.web.innjoy.vo.Room_img"/>
+		<typeAlias alias="review_img" type="com.web.innjoy.vo.Review_img"/>
+		<typeAlias alias="productins" type="com.web.innjoy.vo.ProductIns"/> <!-- 소정 : 추가된 것 -->
+		<typeAlias alias="roomins" type="com.web.innjoy.vo.RoomIns"/> <!-- 소정 : 추가된 것 -->
+		
+		<typeAlias alias="product_head" type="com.web.innjoy.vo.Product_head"/> <!-- 예진 : 추가된 것 -->
+		<typeAlias alias="productHead_p" type="com.web.innjoy.vo.ProductHead_p"/> <!-- 예진 : 추가된 것 -->
+		<typeAlias alias="pro_type_id" type="com.web.innjoy.vo.Pro_type_id"/> <!-- 예진 : 추가된 것 -->
+		<typeAlias alias="board_img" type="com.web.innjoy.vo.Board_img"/>
+		<typeAlias alias="product_review" type="com.web.innjoy.vo.Product_review"/> <!-- 예진 : 추가된 것 -->
+		<typeAlias alias="productReview_r" type="com.web.innjoy.vo.ProductReview_r"/> <!-- 예진 : 추가된 것 -->		
+		<typeAlias alias="productRecomm_r" type="com.web.innjoy.vo.ProductRecomm_r"/> <!-- 예진 : 추가된 것 -->
+		<typeAlias alias="product_recomm" type="com.web.innjoy.vo.Product_recomm"/> <!-- 예진 : 추가된 것 -->
+		<typeAlias alias="recomm_comm" type="com.web.innjoy.vo.Recomm_comm"/> <!-- 예진 : 추가된 것 -->
+		<typeAlias alias="product_room" type="com.web.innjoy.vo.Product_room"/> <!-- 예진 : 추가된 것 -->
+		<typeAlias alias="productRoom_r" type="com.web.innjoy.vo.ProductRoom_r"/> <!-- 예진 : 추가된 것 -->
+		<typeAlias alias="product_roomfilter" type="com.web.innjoy.vo.Product_roomfilter"/> <!-- 예진 : 추가된 것 -->
+		<typeAlias alias="product_roomfilter2" type="com.web.innjoy.vo.Product_roomfilter2"/> <!-- 예진 : 추가된 것 -->
+		<typeAlias alias="productRoom_f" type="com.web.innjoy.vo.ProductRoom_f"/> <!-- 예진 : 추가된 것 -->
+		<typeAlias alias="mainProduct_p" type="com.web.innjoy.vo.MainProduct_p"/> <!-- 예진 : 추가된 것 -->
+		<typeAlias alias="mainReview_r" type="com.web.innjoy.vo.MainReview_r"/> <!-- 예진 : 추가된 것 -->
+		<typeAlias alias="mainRecomm_r" type="com.web.innjoy.vo.MainRecomm_r"/> <!-- 예진 : 추가된 것 -->		
+		<typeAlias alias="recomm" type="com.web.innjoy.vo.Recomm"/> <!-- 예진 : 추가된 것 -->		
+	
+		<typeAlias alias="board" type="com.web.innjoy.vo.Board"/>
+		
+		<typeAlias alias="chatbsn" type="com.web.innjoy.vo.ChatBsn"/>
+		<typeAlias alias="chatuser" type="com.web.innjoy.vo.ChatUser"/>
+		<typeAlias alias="productBsn" type="com.web.innjoy.vo.ProductBsn"/>
+	</typeAliases>
+</configuration>

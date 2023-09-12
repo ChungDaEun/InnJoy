@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
+<mapper namespace="com.web.innjoy.dao.AdmDao">
+	<!--차트-->
+	<select id="getMr_cnt" resultType="monthlyr">
+		SELECT TO_CHAR(start_dt, 'MM') AS monthly_res, COUNT(*) AS mr_cnt
+		FROM reservation
+		GROUP BY TO_CHAR(start_dt, 'MM') 
+		ORDER BY monthly_res
+	</select>
+	<select id="getProdr_cnt" resultType="prodr">
+		SELECT p.pro_name AS prod, COUNT(r.reservation_id) AS prodr_cnt
+		FROM product p
+		LEFT JOIN room rm ON p.pro_id = rm.pro_id
+		LEFT JOIN reservation r ON rm.room_id = r.room_id
+		GROUP BY p.pro_name
+		ORDER BY prodr_cnt DESC
+	</select>
+	<!--일반회원-->
+	<select id="ijList" resultType="user" 
+		parameterType="user">
+		select *
+		from ij_user
+	</select>
+	<select id="getId" parameterType="String" resultType="user">
+		select user_name, user_id, email
+		from ij_user
+		where user_id=#{user_id}
+	</select>
+	<delete id="ijuserDelete" parameterType="String">
+	    delete
+	    from ij_user
+	    where user_id = #{user_id}
+	</delete>
+	<!--사업자회원-->
+	<select id="bsnList" resultType="bsn_user" 
+		parameterType="bsn_user">
+		select *
+		from bsn_user
+	</select>
+	<select id="getBsnId" parameterType="String" resultType="bsn_user">
+		select bsn_name, bsn_email, bsn_id
+		from bsn_user
+		where bsn_id=#{bsn_id}
+	</select>
+	<delete id="bsnuserDelete" parameterType="String">
+	    delete
+	    from bsn_user
+	    where bsn_id=#{bsn_id}
+	</delete>
+	<!--공지사항 -->
+	<select id="getTot" parameterType="noticesch">
+		select count(*)
+		from notice
+		where 1=1
+		and n_title like '%'||#{n_title}||'%'
+	</select>
+	<select id="noticeList" resultType="notice" 
+		parameterType="noticesch">
+		select *
+		from (
+		select rownum cnt, level, n.*
+		from notice n
+		where 1=1
+		and n_title like '%'||#{n_title}||'%'
+		start with refno = 0
+		connect by prior no = refno
+		order siblings by no DESC )
+		where cnt between #{start} and #{end}				
+	</select>
+	<select id="getNo" resultType="int">
+		SELECT nt_no_seq.nextval FROM dual	
+	</select>
+	<insert id="insertNotice" parameterType="notice">
+		INSERT INTO notice VALUES(#{no},#{refno},
+		#{n_title},#{n_content},0, sysdate, sysdate)		
+	</insert>
+	<select id="getNotice" parameterType="int" 
+						  resultType="notice">
+		select * from notice where no  = #{no}
+	</select>
+	<update id="readCntUp" parameterType="int">
+		update notice
+			set readcnt = readcnt + 1
+		 where no = #{no}	
+	 </update>
+	 <update id="updateNotice" parameterType="notice">
+		update notice
+			set n_title=#{n_title},
+			    n_content=#{n_content},
+			    uptdate = sysdate
+			where no = #{no}	 
+	 </update>
+	 <delete id="deleteNotice" parameterType="int">
+	 	delete from notice where no = #{no}
+	 </delete>	 
+		<!-- no, fname, info -->
+	 <insert id="insertNoticeFile" 
+	 	parameterType="noticefile">
+		INSERT INTO NOTICEFILE values(#{no},
+			#{fname},'',#{info})	 
+	 </insert> 
+	  <select id="getFnames" resultType="string" 
+	  		parameterType="int">
+	 	select fname from noticefile
+		where no = #{no}	  
+	  </select>
+</mapper>

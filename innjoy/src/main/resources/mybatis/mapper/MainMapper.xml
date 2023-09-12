@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
+<mapper namespace="com.web.innjoy.dao.MainDao">
+   <resultMap type ="MainProduct_p" id = "mp">
+      <association property="product" javaType="Product">
+         <id column="pro_id" property="pro_id"/>
+         <result column="bsn_id" property="bsn_id"/>
+         <result column="pro_type_id" property="pro_type_id"/>
+         <result column="pro_name" property="pro_name"/>
+         <result column="pro_loc" property="pro_loc"/>
+         <result column="basic_info" property="basic_info"/>
+         <result column="res_ann" property="res_ann"/>
+         <result column="ser_conts" property="ser_conts"/>
+      </association>
+      
+      <association property="room" javaType="Room">
+         <id column="room_id" property="room_id"/>
+         <result column="room_name" property="room_name"/>
+         <result column="room_price" property="room_price"/>
+         <result column="checkin" property="checkin"/>
+         <result column="checkout" property="checkout"/>
+         <result column="min_cnt" property="min_cnt"/>
+         <result column="max_cnt" property="max_cnt"/>
+         <result column="smoking" property="smoking"/>
+         <result column="bed_cnt" property="bed_cnt"/>
+         <result column="pro_id" property="pro_id"/>
+      </association>
+
+      <association property="pro_type_id" javaType="Pro_type_id">
+         <id column="pro_type_id" property="pro_type_id"/>
+         <result column="pro_type" property="pro_type"/>
+      </association>
+      
+      <association property="pro_img" javaType="Pro_img">
+         <id column="no" property="no"/>
+         <result column="pro_id" property="pro_id"/>
+         <result column="pfname" property="pfname"/>
+         <result column="updte" property="updte"/>
+      </association>
+   </resultMap>
+	
+	
+	
+	<select id="getMainproductList" resultMap="mp">
+	   	SELECT pt.pro_type, p.pro_id, p.pro_name, p.pro_loc, r.room_price, pi.pfname
+		FROM pro_type_id pt
+		JOIN product p ON pt.pro_type_id = p.pro_type_id
+		JOIN room r ON p.pro_id = r.pro_id
+		JOIN pro_img pi ON p.pro_id = pi.pro_id
+		WHERE pt.pro_type_id IS NOT NULL
+		AND p.pro_id IS NOT NULL
+		AND p.pro_name IS NOT NULL
+		AND p.pro_loc IS NOT NULL
+		AND r.room_price IS NOT NULL
+		AND pi.pfname IS NOT NULL
+    </select>
+    
+    
+    
+    
+    <resultMap type ="MainReview_r" id = "mr">
+      <association property="review" javaType="Review">
+         <id column="review_id" property="review_id"/>
+         <result column="star" property="star"/>
+         <result column="review_det" property="review_det"/>
+         <result column="rev_time" property="rev_time"/>
+         <result column="reservation_id"   property="reservation_id"/>
+      </association>
+      
+      <association property="user" javaType="User">
+         <id column="user_id" property="user_id"/>
+         <result column="user_pass" property="user_pass"/>
+         <result column="user_name" property="user_name"/>
+         <result column="user_phone" property="user_phone"/>
+         <result column="email" property="email"/>
+         <result column="n_name" property="n_name"/>
+         <result column="auth" property="auth"/>
+      </association>
+      
+      <association property="product" javaType="Product">
+         <id column="pro_id" property="pro_id"/>
+         <result column="bsn_id" property="bsn_id"/>
+         <result column="pro_type_id" property="pro_type_id"/>
+         <result column="pro_name" property="pro_name"/>
+         <result column="pro_loc" property="pro_loc"/>
+         <result column="basic_info" property="basic_info"/>
+         <result column="res_ann" property="res_ann"/>
+         <result column="ser_conts" property="ser_conts"/>
+      </association>
+      
+      <association property="review_img" javaType="Review_img">
+         <id column="review_id" property="review_id"/>
+         <result column="rno" property="rno"/>
+         <result column="fname" property="fname"/>
+         <result column="updte" property="updte"/>
+      </association>
+   </resultMap>
+   <select id="getMainreviewList" resultMap="mr">
+		SELECT
+		    r.star,
+		    r.review_det,
+		    u.n_name,
+		    ri.fname
+		FROM
+		    review r
+		JOIN
+		    reservation rv ON r.reservation_id = rv.reservation_id
+		JOIN
+		    ij_user u ON rv.user_id = u.user_id
+		LEFT JOIN
+		    review_img ri ON r.review_id = ri.review_id
+	</select>
+    
+    
+    <resultMap type ="MainRecomm_r" id = "mc">
+      <association property="recomm" javaType="Recomm">
+         <id column="recom_id" property="recom_id"/>
+         <result column="title" property="title"/>
+         <result column="detail" property="detail"/>
+         <result column="recom_loc" property="recom_loc"/>
+         <result column="recom_time" property="recom_time"/>
+         <result column="reservation_id" property="reservation_id"/>
+      </association>
+      
+      <association property="user" javaType="User">
+         <id column="user_id" property="user_id"/>
+         <result column="user_pass" property="user_pass"/>
+         <result column="user_name" property="user_name"/>
+         <result column="user_phone" property="user_phone"/>
+         <result column="email" property="email"/>
+         <result column="n_name" property="n_name"/>
+         <result column="auth" property="auth"/>
+      </association>
+      
+      <association property="reservation" javaType="Reservation">
+         <id column="reservation_id" property="reservation_id"/>
+         <result column="user_id" property="user_id"/>
+         <result column="room_id" property="room_id"/>
+         <result column="user_cnt" property="user_cnt"/>
+         <result column="start_dt" property="start_dt"/>
+         <result column="end_dt" property="end_dt"/>
+         <result column="payment" property="payment"/>
+         <result column="status" property="status"/>
+      </association>
+      
+      <association property="board_img" javaType="Board_img">
+         <id column="recom_id" property="recom_id"/>
+         <result column="no" property="no"/>
+         <result column="fname" property="fname"/>
+         <result column="updte" property="updte"/>
+      </association>
+   </resultMap>
+   <select id="getMainrecommList" resultMap="mc">
+		SELECT
+		    rc.title,
+		    rc.recom_loc,
+		    rc.recom_time,
+		    u.n_name,
+		    b.fname
+		FROM
+		    recomm rc
+		JOIN
+		    reservation rv ON rc.reservation_id = rv.reservation_id
+		JOIN
+		    ij_user u ON rv.user_id = u.user_id
+		LEFT JOIN
+			board_img b ON rc.recom_id = b.recom_id
+	</select>
+    
+    
+</mapper>

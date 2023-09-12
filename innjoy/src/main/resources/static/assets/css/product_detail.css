@@ -1,0 +1,1117 @@
+@charset "UTF-8";
+
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+   justify-content: center;
+    align-items: center;
+  }
+
+  .container1 {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 8px;
+    
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .slider-container1 {
+    position: relative;
+  }
+.slider {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+  }
+
+.slider img {
+  min-width: 100%; /* Ensure images take full width */
+  min-height: 100%; /* Ensure images take full height */
+  object-fit: contain; /* Maintain aspect ratio and fit within the container */
+}
+
+
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    cursor: pointer;
+  }
+
+  .arrow.left {
+    left: 0;
+  }
+
+  .arrow.right {
+    right: 0;
+  }
+
+  .description1 {
+    padding: 20px;
+  }
+
+
+  .info {
+    padding: 20px;
+  }
+
+  .info ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .info li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .info li svg {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+  }
+  
+  
+.heart-button {
+        display: flex;
+        align-items: center;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+    }
+
+    .heart-icon1 {
+        width: 24px;
+        height: 24px;
+        margin-right: 5px;
+        fill: none;
+        stroke: #00234D;
+        stroke-width: 2px;
+    }
+
+    .heart-text {
+        font-size: 14px;
+        color: #00234D;
+        font-weight: bold;
+    }  
+  .s_content {
+    font-size: 20px;
+    text-align: left;
+    margin-bottom: 16px;
+  }
+  .description_name{
+   font-size: 32px;
+    text-align: left;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  .css-1u38mgg ul {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: 20px; /* 아이콘 사이의 간격을 조정 */
+}
+
+.css-t9n8kv-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    grid-template-rows: repeat(8, auto); /* 8 rows */
+    gap: 16px; /* Gap between items */
+}
+
+.css-1ju036a h2 {
+    font-size: 20px;
+    text-align: left;
+    margin-bottom: 16px;
+  }
+  
+.css-9cehu5 {
+  margin-top: 5px; /* 아이콘 아래 텍스트와의 간격을 조정 */
+}
+
+/* 추가적인 스타일을 필요로 하는 경우 여기에 추가 */
+.product-availability {
+  padding: 4px 12px;
+  background: #00234D;
+  border-radius: 4px;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 17px;
+  letter-spacing: 0.03em;
+  color: #FEFEFE;
+  display: inline-block; } 
+
+.product-wishlist,
+.product-wishlist:hover {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  margin-left: 12px; }
+  
+
+.tabs {
+    list-style: none;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+}
+.tabs:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+.tabs input[type=radio] {
+    display:none;
+}
+.tabs label {
+    display: inline-block;
+    min-width: 25%;
+    flex: 1 1 25%;
+    color: #ccc;
+    text-align: center;
+    cursor: pointer;
+    -webkit-transition: all 0.5s; /* Safari 3.1 to 6.0 */
+    transition: all 0.5s;
+}
+
+.tabs label span {
+    display: none;
+    font-size: 1rem;
+}
+
+.tabs label:hover {
+    color: #3498db;
+}
+.tabs label:hover .icon1 {
+      border-color: #3498db;
+      background-position: 50px 0;
+      background-size: 100px 50px;
+   
+}
+
+.tab__content {
+    display: none;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    background-color:#ffffff;
+    margin-top: 2rem;
+}
+
+.tab__content * {
+    -webkit-animation: scale 0.2s ease-in-out;
+    -moz-animation: scale 0.2s ease-in-out;
+    animation: scale 0.2s ease-in-out;
+}
+@keyframes scale {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+    }
+  50% {
+    transform: scale(1.01);
+    opacity: 0.5;
+    }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.tabs [id^="tab"]:checked + label {
+    background: #FFF;
+    color: #3498db;
+}
+
+.tabs [id^="tab"]:checked + label i {
+    border-color: #3498db;
+    background-position: 50px 0;
+    background-size: 100px 50px;
+}
+
+ #tab1:checked ~ #tab__content--1,
+ #tab2:checked ~ #tab__content--2,
+ #tab3:checked ~ #tab__content--3,
+ #tab4:checked ~ #tab__content--4{
+     display: block;
+ }
+
+@media (min-width: 768px) {
+    .tabs label span {
+        display: block;
+    }
+}
+
+.icon1 {
+   margin-top: 1rem;
+   display: inline-block;
+   width: 44px;
+   height: 44px;
+   border-radius: 100%;
+   border: 2px solid #CACFD6;
+   background-size: 100px 50px;
+   box-sizing: border-box;
+}
+
+.email-cal {
+   background: white url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/45910/icon_--_sync.png');
+   background-position: 0 0;
+   background-size: 100px 50px;
+}
+
+.snapshot {
+   background: white url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/45910/icon_--_snapshots.png');
+   background-size: 100px 50px;
+   background-position: 0 0;
+}
+
+.inbox-apps {
+   background: white url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/45910/icon_--_templates.png');
+   background-size: 100px 50px;
+   background-position: 0 0;
+}
+
+.log-calls {
+   background: white url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/45910/icon_--_log_call.png');
+   background-size: 100px 50px;
+   background-position: 0 0;
+}
+
+.tracking {
+   background: white url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/45910/icon_--_tracking.png');
+   background-size: 100px 50px;
+   background-position: 0 0;
+}
+
+.book-meetigns {
+   background: white url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/45910/icon_--_book_meeting.png');
+   background-size: 100px 50px;
+   background-position: 0 0;
+}
+
+.send-later {
+   background: white url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/45910/icon_--_send_later.png');
+   background-size: 100px 50px;
+   background-position: 0 0;
+}
+
+.follow-up {
+   background: white url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/45910/icon_--_follow_up.png');
+   background-size: 100px 50px;
+   background-position: 0 0;
+}
+
+
+
+/* 공통 스타일 */
+.css-1tka3zs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  width:100%;
+}
+
+/* 버튼 스타일 */
+.css-i3xioc {
+  display: flex;
+}
+
+/* 버튼 내부 아이콘 스타일 */
+.css-1jlrsog {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
+
+/* 첫 번째 버튼 스타일 */
+.css-shte7,
+.css-gskve1 {
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.css-shte7:hover,
+.css-gskve1:hover {
+  background-color: #B0CC69;
+}
+
+/* 날짜 및 기간 스타일 */
+.css-1cq8r2w,
+.css-pjwrcq {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+
+
+
+
+
+.container2 {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%;
+  }
+
+
+
+.booking-form>form .row.no-margin {
+   margin-right: 50px;
+   margin-left: 50px;
+}
+
+.booking-form>form .row.no-margin>[class*="col-"] {
+   padding-right: 10px;
+   padding-left: 10px;
+}
+
+
+
+.booking-form .form-group {
+   position: relative;
+   height: 110px;
+
+   margin-bottom: 0px;
+}
+
+.booking-form .form-control {
+    font-family: 'Alegreya', serif;
+    background-color: transparent;
+    border-radius: 0px;
+    border: none;
+    height: 50px;
+    border-radius: 10px; 
+    font-size: 15px;
+    color: #3c404a;
+    font-weight: 700;
+}
+
+
+.booking-form select.form-control {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 10px; /* 조정 가능한 패딩 값 */
+    font-size: 15px; /* 폰트 크기 조정 가능 */
+    width: 100%; /* 옵션 박스가 전체 폭을 차지하도록 */
+    border: 1px solid #ddd; /* 테두리 추가 */
+    background-color: white;
+}
+
+
+.booking-form select.form-control+.select-arrow {
+   position: absolute;
+   right: 0px;
+   bottom: 20px;
+   width: 32px;
+   line-height: 32px;
+   height: 32px;
+   text-align: center;
+   pointer-events: none;
+   color: #818390;
+   font-size: 12px;
+}
+
+.booking-form select.form-control+.select-arrow:after {
+   content: '\279C';
+   display: block;
+   -webkit-transform: rotate(90deg);
+   transform: rotate(90deg);
+}
+
+.booking-form .form-label {
+   color: #818390;
+   display: block;
+   font-weight: 400;
+   height: 30px;
+   line-height: 30px;
+   font-size: 14px;
+}
+
+.booking-form .form-btn {
+   display: flex;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+    padding: 15px 10px;
+    height: 110px;
+    margin-top: 30px;
+}
+
+.booking-form .submit-btn {
+   background: #B0CC69;
+    color: #fff;
+    border: none;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 14px;
+    display: block;
+    height: 50px;
+    width: 90px;
+    border-radius: 8px;
+   transition: background-color 0.3s ease;
+}
+
+
+.booking-form .submit-btn:hover {
+  background-color: #88a738;
+}
+
+.booking-form .row.no-margin .col-md-4 {
+    padding-right: 5px;
+    padding-left: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.booking-form .row.no-margin {
+    display: flex; /* display를 flex로 설정하여 가로로 나열 */
+    justify-content: space-between; /* 요소 사이에 간격을 띄우기 위해 사용 */
+    align-items: center; /* 요소들을 수직 가운데 정렬 */
+    flex-wrap: wrap; /* 요소가 너무 많을 때 줄바꿈 처리 */
+}
+
+.booking-form .col-md-2 {
+    flex-basis: 16%; /* 요소가 한 줄에 두 개씩 배치되도록 설정 */
+}
+
+.booking-form .form-group {
+    flex-basis: 100%; /* 폼 그룹이 한 줄 전체 너비를 차지하도록 설정 */
+    padding: 10px 0; /* 간격 조정을 위해 패딩 추가 */
+}
+
+.booking-form .col-md-7 .row.no-margin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+
+.room-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 45px;
+}
+
+.room-item {
+    flex-basis: calc(50% - 30px); /* 객실 아이템의 너비 설정 */
+    margin: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative; /* 객실 아이템를 기준으로 자식 요소의 위치를 설정하기 위해 */
+    
+}
+
+.room-item img {
+    width: 100%;
+    height: 280px;
+}
+
+.room-info {
+    padding: 10px;
+}
+
+.room-info h3 {
+    margin-top: 0;
+    font-size: 18px;
+}
+
+.room-info p {
+    margin: 5px 0;
+    color: #818390;
+}
+
+.room-image-container {
+    position: relative; /* 이미지 컨테이너를 상대 위치로 설정하여 내부 요소를 배치 */
+    display: inline-block; /* 요소가 인라인 블록으로 배치되도록 설정 */
+}
+
+.room-image-container img {
+    display: block; /* 이미지를 블록 요소로 설정하여 다른 요소와 겹치지 않도록 함 */
+    max-width: 100%; /* 이미지가 컨테이너의 너비를 초과하지 않도록 함 */
+}
+
+.select-room-btn {
+   width: 90px;
+   height: 45px;
+    background: #B0CC69;
+    color: #fff;
+    border: none;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 5px 10px; /* 버튼의 패딩을 조정하여 크기 조절 */
+    cursor: pointer;
+    border-radius: 3px; 
+   transition: background-color 0.3s ease;
+   margin: 5px 0; /* 위 10px, 아래 10px의 공백을 추가합니다. */
+}
+
+
+.select-room-btn:hover {
+  background-color: #88a738;
+}
+
+
+
+.review-list {
+    width: 100%;
+    height: auto;
+   
+}
+
+.review-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px; 
+    padding: 10px;
+    width: 100%;
+    height: 150px;
+    margin: 15px 0;
+    border: 1px solid #B0CC69;
+}
+
+.review-image img {
+    width: auto;
+    max-width: 180px;
+    max-height: 120px;
+    border-radius: 10%;
+    margin: 15px 0;
+    margin-bottom: 15px;
+    margin-right: 10px;
+}
+.review-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin-left: 15px;
+    width: 100%;
+    height: 120px;
+    margin: 15px 0;
+    border-radius: 10px; 
+
+}
+
+.user-nickname {
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 15px;
+    width:80px
+}
+
+
+.comment-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin-left: 15px;
+    width: 100%;
+    height: 120px;
+    margin: 15px 0;
+    border: 1px solid #ddd;
+    border-radius: 10px; 
+    background-color: rgb(238, 244, 223);
+}
+
+.manager{
+   color: #3c404a;
+   font-weight: bold;
+   margin-left: 30px;
+   margin-right: 30px;
+   margin-top: 15px;
+   margin-bottom: 15px;
+   text-align:left;
+   width: 10%;
+}
+
+
+.comment-text {
+    flex-grow: 100;
+    text-align: left;
+    margin: 15px 30px 15px 0px;
+    width: 95%;
+    max-height: 200px; /* 내용이 최대로 보일 높이 설정 */
+    overflow: auto; /* 내용이 넘칠 경우 스크롤 표시 */
+    word-wrap: break-word; /* 긴 단어를 줄바꿈하여 넘침 방지 */
+  /* 스크롤 바 스타일 */
+    scrollbar-width: thin; /* 스크롤 바 두께 조절, thin 또는 auto 사용 */
+    scrollbar-color: #B0CC69 #ddd; /* 스크롤 바 색상, 색상1 색상2 순서 */
+}
+
+/* 웹킷 브라우저에 대한 스크롤 스타일 */
+.comment-text::-webkit-scrollbar {
+    width: 8px; /* 스크롤 바 너비 */
+}
+
+.comment-text::-webkit-scrollbar-thumb {
+    background-color: #B0CC69; /* 스크롤 바 썸네일 색상 */
+    border-radius: 4px; /* 스크롤 바 썸네일 모서리 둥글기 */
+}
+
+.comment-text::-webkit-scrollbar-track {
+    background-color: rgb(243, 248, 233); /* 스크롤 바 트랙 색상 */
+}
+
+.review-text {
+    flex-grow: 100;
+    text-align: left;
+    margin-bottom: 15px;
+    margin: 15px 0;
+    width: 95%;
+    max-height: 200px; /* 내용이 최대로 보일 높이 설정 */
+    overflow: auto; /* 내용이 넘칠 경우 스크롤 표시 */
+    word-wrap: break-word; /* 긴 단어를 줄바꿈하여 넘침 방지 */
+  /* 스크롤 바 스타일 */
+    scrollbar-width: thin; /* 스크롤 바 두께 조절, thin 또는 auto 사용 */
+    scrollbar-color: #B0CC69 #ddd; /* 스크롤 바 색상, 색상1 색상2 순서 */
+}
+
+/* 웹킷 브라우저에 대한 스크롤 스타일 */
+.review-text::-webkit-scrollbar {
+    width: 8px; /* 스크롤 바 너비 */
+}
+
+.review-text::-webkit-scrollbar-thumb {
+    background-color: #B0CC69; /* 스크롤 바 썸네일 색상 */
+    border-radius: 4px; /* 스크롤 바 썸네일 모서리 둥글기 */
+}
+
+.review-text::-webkit-scrollbar-track {
+    background-color: rgb(243, 248, 233); /* 스크롤 바 트랙 색상 */
+}
+
+
+.report-button {
+   width: 13%;
+    margin-left: auto;
+}
+
+.report-btn {
+    background-color: white;
+    color: #B0CC69;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.report-btn:hover {
+    background-color: #B0CC69;
+    color: white;
+}
+
+
+
+.section-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 50px;
+   
+}
+
+.recommendation {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.place-image {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.divider {
+    width: 100%;
+    margin: 10px 0;
+    border: none;
+    border-top: 1px solid rgb(128, 128, 128);
+}
+
+.recommendation-text {
+    text-align: center;
+}
+
+
+.d-flex {
+    display: flex;
+    align-items: center;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+.message-popup {
+    display: flex;
+    align-items: center;
+}
+
+.product-availability {
+    font-weight: bold;
+}
+
+.message-popup-icon1 {
+    margin-right: 8px;
+}
+
+/* 이미지 오른쪽 하단에 배치 */
+.slider-container1 {
+    position: relative;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.arrow.left {
+    left: 0;
+}
+
+.arrow.right {
+    right: 0;
+}
+
+/* 테이블 밑줄 스타일 */
+.table-divider {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+ .section-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .recommendation {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .place-image {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .divider {
+        width: 100%;
+        height: 1px;
+        background-color: #ccc;
+        border: none;
+    }
+
+    .comment-section {
+        margin-top: 20px;
+    }
+
+    .comment {
+        margin-bottom: 10px; /*댓글 사이 조정*/
+        display: flex;
+        align-items: flex-start;
+        font : 14px;
+    }
+
+
+.comment .comment-text {
+    font-size: 14px;
+    }
+
+
+
+
+.wejoy-comment-section {
+        margin-top: 20px;
+    }
+
+    .wejoy-comment {
+        margin-bottom: 15px; /*댓글 사이 조정*/
+        display: flex;
+        align-items: flex-start;
+       gap: 5px; 
+        font : 14px;
+    }
+
+    .wejoy-comment .wejoy-user-nickname {
+        font-weight: bold;
+        margin-right: 5px;
+        font : 10px;
+    }
+
+
+.wejoy-user-nickname {
+    display: block;
+    margin-bottom: 8px; /* 사용자 내용 아래 간격 조정 */
+}
+.wejoy-comment .wejoy-comment-text {
+        font-size: 14px;
+    }
+
+
+
+.wejoy-comment-input {
+    flex: 1; /* Expands to take remaining space */
+    height: 45px; /* Same height as the button */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 90%;
+}
+
+.wejoy-comment-button {
+    background-color: #B0CC69;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 45px; /* Same height as the input */
+    width: 10%; /* Let the content define the width */
+}
+
+
+
+.container3 {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 8px;
+
+  overflow: hidden; /* 내용이 넘칠 경우 내용 숨김 */
+  width: calc(100% - 40px); /* 화면 너비에서 20px(양쪽 공백)씩 빼줍니다 */
+  margin: 0 20px; /* 양쪽 20px 공백을 주어요 */
+  margin-top: 20px; /* 위쪽에 10px의 마진 추가 */
+  margin-bottom: 20px; /* 아래쪽에 10px의 마진 추가 */
+
+}
+
+.container3 img {
+  max-width: 100%; /* 이미지의 최대 너비를 컨테이너의 너비에 맞춥니다 */
+  height: auto; /* 이미지의 가로 세로 비율을 유지하면서 조절합니다 */
+  margin: 0 auto;
+  margin-top: 20px; /* 위쪽에 10px의 마진 추가 */
+  margin-bottom: 20px; /* 아래쪽에 10px의 마진 추가 */
+}
+
+.reservation-table {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* 위쪽 정렬을 유지 */
+  height: 100%;
+  padding-bottom: 20px; /* 아래쪽 여백 추가 */
+  padding-top: 20px; /* 위쪽 여백 추가 */
+}
+
+table {
+  width: 100%;
+  max-width: 70%;
+  border: 1px solid #B0CC69;
+  border-collapse: collapse;
+   margin: 0 auto; 
+  background-color: white;
+}
+
+th, td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px; /* 아래쪽 여백 추가 */
+  padding-top: 20px; /* 위쪽 여백 추가 */
+}
+
+
+.reserve-button {
+  padding: 10px 20px;
+  background-color: #B0CC69;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.reserve-button:hover {
+  background-color: #88a738;
+}
+
+.room-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.room-detail img {
+    width: 95%;
+    margin: 10px 0;
+}
+
+
+.room-detail-info{
+    text-align: left;
+        font-size: 25px;
+        color: rgb(128, 128, 128);
+        margin: 20px 0;
+         font-weight: bold; 
+}
+
+ .room-infos {
+        text-align: left;
+        margin: 15px 0;
+    }
+
+    .room-basic-info, .room-reservation-info {
+        font-size: 15px;
+        color: #333;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .location-content {
+    text-align: left;
+    color: #333; /* Dark gray text color */
+    margin-top: 25px;
+    margin-bottom: 45px;
+}
+
+.container1 a {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    color: #333; /* Dark gray text color */
+    margin-bottom: 10px; /* Adding some bottom margin for spacing */
+}
+
+.reservaion-info-head {
+    text-align: left;
+    font-weight: bold;
+    color: #777; /* Middle gray text color */
+    margin-left: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.divider2 {
+    width: 100%;
+    margin: 10px 0;
+    border-top: 1px solid rgb(162, 162, 162);
+}
+
+.reservation-info-list{
+    text-align: left;
+    margin-left: 45px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #333; /* Dark gray text color */
+    font-weight: bold; /* Making the text bold */
+}
+
+.reservation-infos {
+    text-align: left;
+    margin-left: 50px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    color: rgb(110, 110, 110); /* Dark gray text color */
+    font-weight: bold; /* Making the text bold */
+}
+
+.reservation-info {
+    display: flex;
+    gap: 20px; /* Adjust as needed */
+}
+
+.reservation-info-item {
+    flex: 1;
+}
+
+.reservation-label {
+    display: block;
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: left;
+    margin-left: 50px;
+}
+
+.reservation-input {
+    width: 80%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.reservation-button {
+    width: 100px;
+    height: 40px;
+    background-color: #B0CC69;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    text-align: center; /* Left-align the button */
+    display: block; /* Make the button a block element */
+    margin-left: 50px; /* Add left margin to align it with the other content */
+    margin-top: 50px;
+}
+
+.recommendation-container{
+   width: 95%;
+   height: auto;
+   text-align:left;
+   margin-top: 50px;
+   margin-bottom: 50px;
+}
+.review_com{
+   margin-bottom: 50px;
+}

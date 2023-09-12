@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
+<mapper namespace="com.web.innjoy.dao.BsnDao">
+	
+	<resultMap type ="ProductRoom" id = "prd">
+		<association property="product" javaType="Product">
+			<id column="pro_id" property="pro_id"/>
+			<result column="bsn_id" property="bsn_id"/>
+			<result column="pro_type_id" property="pro_type_id"/>
+			<result column="pro_name" property="pro_name"/>
+			<result column="pro_loc" property="pro_loc"/>
+			<result column="basic_info" property="basic_info"/>
+			<result column="res_ann" property="res_ann"/>
+			<result column="ser_conts" property="ser_conts"/>
+		</association>
+		<association property="room" javaType="Room">
+			<id column="room_id" property="room_id"/>
+			<result column="room_name" property="room_name"/>
+			<result column="room_price" property="room_price"/>
+			<result column="checkin" property="checkin"/>
+			<result column="checkout" property="checkout"/>
+			<result column="min_cnt" property="min_cnt"/>
+			<result column="max_cnt" property="max_cnt"/>
+			<result column="smoking" property="smoking"/>
+			<result column="bed_cnt" property="bed_cnt"/>
+			<result column="pro_id" property="pro_id"/>
+		</association>
+	</resultMap>
+	
+	<select id="getProRoomList" resultMap="prd">
+		SELECT p.BSN_ID, r.room_id, r.room_name, r.room_price
+    	FROM product p JOIN room r ON p.pro_id = r.pro_id
+	</select>
+	
+	<select id="bsn_res" resultMap="prd">
+		SELECT p.PRO_NAME, m.ROOM_NAME, m.ROOM_ID
+		FROM room m
+		INNER JOIN PRODUCT p ON p.pro_id = m.pro_id
+		WHERE p.bsn_id = #{bsn_id}
+	</select>
+	
+    <select id="calList" parameterType="Integer" resultType="Reservation">
+	    SELECT
+	        reservation_id, user_id, room_id,
+	        user_cnt, start_dt, end_dt,
+	        payment, status
+	    FROM RESERVATION
+	    <where>
+	        <if test="room_id != null">
+	            AND ROOM_ID = #{room_id}
+	        </if>
+	    </where>
+    </select>
+    
+   	<resultMap type ="ResUser" id = "ru">
+		<association property="user" javaType="User">
+			<id column="user_id" property="user_id"/>
+			<result column="user_pass" property="user_pass"/>
+			<result column="user_name" property="user_name"/>
+			<result column="user_phone" property="user_phone"/>
+			<result column="email" property="email"/>
+			<result column="n_name" property="n_name"/>
+			<result column="auth" property="auth"/>
+		</association>
+		<association property="reservation" javaType="Reservation">
+			<id column="reservation_id" property="reservation_id"/>
+			<result column="user_id" property="user_id"/>
+			<result column="room_id" property="room_id"/>
+			<result column="user_cnt" property="user_cnt"/>
+			<result column="start_dt" property="start_dt"/>
+			<result column="end_dt" property="end_dt"/>
+			<result column="payment" property="payment"/>
+			<result column="status" property="status"/>
+		</association>
+	</resultMap> 
+ 	<select id="resDetModal" resultMap="ru">
+		SELECT
+		    r.status, r.start_dt,r.end_dt,
+		    r.user_cnt,r.payment,
+		    u.user_name, u.user_phone, u.user_id
+		FROM reservation r
+		JOIN ij_user u ON r.user_id = u.user_id
+		WHERE r.reservation_id = #{reservation_id}
+	</select>   
+	
+	<!-- 숙소페이지에서 bsn_id 찾기 -->
+	<select id = "FindBsnID" resultType = "Product">
+		SELECT bsn_id FROM PRODUCT p
+		WHERE pro_id = #{pro_id}
+	</select>
+	
+	<resultMap type ="WishProPimg" id = "wpi">
+		<association property="product" javaType="Product">
+			<id column="pro_id" property="pro_id"/>
+			<result column="bsn_id" property="bsn_id"/>
+			<result column="pro_type_id" property="pro_type_id"/>
+			<result column="pro_name" property="pro_name"/>
+			<result column="pro_loc" property="pro_loc"/>
+			<result column="basic_info" property="basic_info"/>
+			<result column="res_ann" property="res_ann"/>
+			<result column="ser_conts" property="ser_conts"/>
+		</association>
+		<association property="pro_img" javaType="Pro_img">
+			<id column="no" property="no"/>
+			<result column="pro_id" property="pro_id"/>
+			<result column="pfname" property="pfname"/>
+			<result column="updte" property="updte"/>
+		</association>	
+		<association property="wish" javaType="Wish">
+			<id column="wish_id" property="wish_id"/>
+			<result column="user_id" property="user_id"/>
+			<result column="pro_id" property="pro_id"/>
+		</association>
+	</resultMap>
+	
+	<select id="wishProList" resultMap="wpi">
+		SELECT p.*, i.* 
+		FROM wish w
+		JOIN product p ON w.pro_id = p.pro_id
+		JOIN pro_img i ON w.pro_id = i.pro_id
+		WHERE w.user_id = #{user_id}
+	</select> 
+ 
+</mapper>

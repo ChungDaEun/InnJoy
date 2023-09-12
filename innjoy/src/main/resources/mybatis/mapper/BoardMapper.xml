@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
+<mapper namespace="com.web.innjoy.dao.Product_headDao">
+	<resultMap type="Product_head" id="pdhRst">
+	    <id column="pro_id" property="pro_id"/>
+	    <result column="pro_name" property="pro_name"/>
+	    <result column="ser_conts" property="ser_conts"/>
+	    <result column="pfname" property="pfname"/>
+	    <result column="pro_type" property="pro_type"/>
+	    <result column="pro_type_id" property="pro_type_id"/>
+	    <result column="bsn_id" property="bsn_id"/>
+	    <result column="start_dt" property="start_dt"/>
+	    <result column="end_dt" property="end_dt"/>
+	    <result column="user_cnt" property="user_cnt"/>
+	    <result column="room_name" property="room_name"/>
+	    <result column="room_id" property="room_id"/>
+	    <result column="min_cnt" property="min_cnt"/>
+	    <result column="max_cnt" property="max_cnt"/>
+	</resultMap>
+	<select id="getProducthead_detail" resultMap="pdhRst">
+	SELECT
+	    p.pro_id,
+	    p.pro_name,
+	    p.ser_conts,
+	    p.bsn_id,
+	    img.pfname,
+	    t.pro_type,
+	    t.pro_type_id
+	FROM
+	    product p
+	LEFT JOIN
+	    pro_img img ON p.pro_id = img.pro_id
+	LEFT JOIN
+	    pro_type_id t ON p.pro_type_id = t.pro_type_id
+	WHERE p.pro_id = #{pro_id}
+   </select>	
+
+    <resultMap type="Product_review" id="pdrRst">
+	    <id column="pro_id" property="pro_id"/>
+	    <result column="user_id" property="user_id"/>
+	    <result column="n_name" property="n_name"/>
+	    <result column="reservation_id" property="reservation_id"/>
+	    <result column="room_id" property="room_id"/>
+	    <result column="room_name" property="room_name"/>
+	    <result column="pro_id" property="pro_id"/>
+	    <result column="bsn_id" property="bsn_id"/>
+	    <result column="bsn_name" property="bsn_name"/>
+	    <result column="review_id" property="review_id"/>
+	    <result column="star" property="star"/>
+	    <result column="review_det" property="review_det"/>
+	    <result column="rev_time" property="rev_time"/>
+	    <result column="fname" property="fname"/>
+	    <result column="rv_com_det" property="rv_com_det"/>
+	    <result column="rv_com_time" property="rv_com_time"/>
+	</resultMap>
+	<select id="getProductreview_detail" resultMap="pdrRst">
+	SELECT
+	    u.user_id,
+	    u.n_name,
+	    r.reservation_id,
+	    r.room_id,
+	    ro.room_name,
+	    ro.pro_id,
+	    p.bsn_id,
+	    b.bsn_name,
+	    re.review_id,
+	    re.star,
+	    re.review_det,
+	    re.rev_time,
+	    ri.fname,
+	    rc.rv_com_det,
+	    rc.rv_com_time
+	FROM
+	    ij_user u
+	JOIN
+	    reservation r ON u.user_id = r.user_id
+	JOIN
+	    room ro ON r.room_id = ro.room_id
+	JOIN
+	    product p ON ro.pro_id = p.pro_id
+	JOIN
+	    bsn_user b ON p.bsn_id = b.bsn_id
+	JOIN
+	    review re ON r.reservation_id = re.reservation_id
+	LEFT JOIN
+	    review_img ri ON re.review_id = ri.review_id
+	JOIN
+	    review_comm rc ON re.review_id = rc.review_id
+	WHERE p.pro_id= #{pro_id}
+   </select>	
+   
+   <resultMap type="Product_recomm" id="pdcRst">
+	    <id column="pro_id" property="pro_id"/>
+	    <result column="recom_id" property="recom_id"/>
+	    <result column="title" property="title"/>
+	    <result column="detail" property="detail"/>
+	    <result column="recom_loc" property="recom_loc"/>
+	    <result column="recom_time" property="recom_time"/>
+	    <result column="reservation_id" property="reservation_id"/>
+	    <result column="fname" property="fname"/>
+	    <result column="room_id" property="room_id"/>
+	    <result column="user_id" property="user_id"/>
+	    <result column="n_name" property="n_name"/>
+	    <result column="review_det" property="review_det"/>
+	    <result column="rev_time" property="rev_time"/>
+	    <result column="fname" property="fname"/>
+	    <result column="rv_com_det" property="rv_com_det"/>
+	    <result column="rv_com_time" property="rv_com_time"/>
+	</resultMap>
+	<select id="getProductrecomm_detail" resultMap="pdcRst">
+		SELECT
+	    re.recom_id,
+	    re.title,	
+	    re.detail,
+	    re.recom_loc,
+	    re.recom_time,
+	    re.reservation_id,
+	    bi.fname,
+	    rs.room_id,
+	    ro.pro_id,
+	    u.user_id,
+	    u.n_name
+	FROM
+	    recomm re
+	LEFT JOIN
+	    board_img bi ON re.recom_id = bi.recom_id
+	LEFT JOIN
+	    reservation rs ON re.reservation_id = rs.reservation_id
+	LEFT JOIN
+	    room ro ON rs.room_id = ro.room_id
+	LEFT JOIN
+	    product p ON ro.pro_id = p.pro_id
+	LEFT JOIN
+	    ij_user u ON rs.user_id = u.user_id
+	WHERE p.pro_id= #{pro_id}
+   </select>	
+   
+    
+   
+   <select id="getProductDetail" parameterType="map" resultMap="pdhRst">
+	SELECT
+	    p.pro_id,
+	    p.pro_name,
+	    r.room_id,
+	    r.room_name,
+	    r.room_price,
+	    r.min_cnt,
+	    r.max_cnt,
+	    re.reservation_id,
+	    re.user_id,
+	    re.user_cnt,
+	    re.start_dt,
+	    re.end_dt,
+	    re.status,
+	    ri.rfname AS room_img_fname
+	FROM
+	    product p
+	JOIN
+	    room r ON p.pro_id = r.pro_id
+	LEFT JOIN
+	    (
+	        SELECT room_id, MIN(reservation_id) AS reservation_id
+	        FROM reservation
+	        GROUP BY room_id
+	    ) min_res ON r.room_id = min_res.room_id
+	LEFT JOIN
+	    reservation re ON min_res.room_id = re.room_id AND min_res.reservation_id = re.reservation_id
+	LEFT JOIN
+	    room_img ri ON r.room_id = ri.room_id
+	WHERE
+	    p.PRO_ID = #{pro_id}
+	<if test='start_dt != null and start_dt != ""'>
+	    AND (re.start_dt IS NULL OR re.end_dt IS NULL OR (TO_DATE(#{start_dt}, 'YYYYMMDDHH24') <![CDATA[>=]]> re.end_dt OR TO_DATE(#{end_dt}, 'YYYYMMDDHH24') <![CDATA[<=]]> re.start_dt))
+	</if>
+	<if test='user_cnt != null and user_cnt != "" '>
+		AND (r.MIN_CNT <![CDATA[<=]]> #{user_cnt} AND r.MAX_CNT <![CDATA[>=]]> #{user_cnt})
+	</if>
+
+   </select>	
+    
+    <resultMap type="Product_roomfilter2" id="pdhRst2">
+	    <id column="room_id" property="room_id"/>
+	    <result column="pro_type" property="pro_type"/>
+	    <result column="pro_type_id" property="pro_type_id"/>
+	    <result column="pro_id" property="pro_id"/>
+	    <result column="pro_name" property="pro_name"/>
+	    <result column="pro_loc" property="pro_loc"/>
+	    <result column="basic_info" property="basic_info"/>
+	    <result column="res_ann" property="res_ann"/>
+	    <result column="ser_conts" property="ser_conts"/>
+	    <result column="room_name" property="room_name"/>
+	    <result column="room_price" property="room_price"/>
+	    <result column="checkin" property="checkin"/>
+	    <result column="checkout" property="checkout"/>
+	    <result column="min_cnt" property="min_cnt"/>
+	    <result column="max_cnt" property="max_cnt"/>
+	    <result column="smoking" property="smoking"/>
+	    <result column="bed_cnt" property="bed_cnt"/>
+	    <result column="user_id" property="user_id"/>
+	    <result column="user_cnt" property="user_cnt"/>
+	    <result column="start_dt" property="start_dt"/>
+	    <result column="end_dt" property="end_dt"/>
+	    <result column="payment" property="payment"/>
+	    <result column="status" property="status"/>
+	    <result column="rfname" property="rfname"/>
+	</resultMap>
+    <select id="getProductDetail2" parameterType="map" resultType="Product_roomfilter2">
+	   
+       SELECT
+        pt.pro_type,
+        pt.pro_type_id,
+        p.pro_id,
+        p.pro_name,
+        p.pro_loc,
+        p.basic_info,
+        p.res_ann,
+        p.ser_conts,
+        r.room_id,
+        r.room_name,
+        r.room_price,
+        r.checkin,
+        r.checkout,
+        r.min_cnt,
+        r.max_cnt,
+        r.smoking,
+        r.bed_cnt,
+        res.room_id,
+        res.user_id,
+        res.user_cnt,
+        res.start_dt,
+        res.end_dt,
+        res.payment,
+        res.status,
+        ri.rfname AS room_img_fname
+        FROM
+        pro_type_id pt
+        JOIN
+        product p ON pt.pro_type_id = p.pro_type_id
+        JOIN
+        room r ON p.pro_id = r.pro_id
+        LEFT JOIN
+        (
+            SELECT
+            room_id,
+            user_id,
+            user_cnt,
+            start_dt,
+            end_dt,
+            payment,
+            status
+            FROM
+            reservation
+            WHERE
+            reservation_id IN (
+                SELECT MIN(reservation_id) FROM reservation GROUP BY room_id
+            )
+        ) res ON r.room_id = res.room_id
+        LEFT JOIN
+        room_img ri ON r.room_id = ri.room_id
+        WHERE
+        r.room_id = #{room_id}
+        AND (res.start_dt IS NULL OR 1=1)
+        AND (res.end_dt IS NULL OR 1=1)
+        AND (p.pro_id IS NULL OR 1=1)
+        AND (res.user_cnt IS NULL OR 1=1)
+    </select>
+     
+	 <select id="getRecommById" parameterType="int" resultType="Board">
+		    SELECT DISTINCT
+		    	rec.recom_id,
+			    rec.title,
+			    rec.detail,
+			    rec.RECOM_TIME,
+			    res.USER_ID
+			FROM recomm rec, reservation res, room r, product prod, RECOMM_COMM rc
+			WHERE rec.RESERVATION_ID = res.RESERVATION_ID
+			AND res.ROOM_ID = r.ROOM_ID
+			AND r.PRO_ID = prod.PRO_ID 
+			AND rec.RECOM_ID = rc.RECOM_ID
+			AND r.pro_id=#{pro_id}
+		</select>
+		<select id="getCommListById" parameterType="int" resultType="Recomm_comm">
+			SELECT
+		    	rc.RC_COM_ID,
+		    	rc.USER_ID,
+		    	rc.RC_COM_DET,
+		    	rc.RC_COM_TIME
+			FROM recomm rec, reservation res, room r, product prod, RECOMM_COMM rc
+			WHERE rec.RESERVATION_ID = res.RESERVATION_ID
+			AND res.ROOM_ID = r.ROOM_ID
+			AND r.PRO_ID = prod.PRO_ID 
+			AND rec.RECOM_ID = rc.RECOM_ID
+			AND rec.RECOM_ID = #{recom_id}
+		</select>
+		<select id="getImgListById" parameterType="int" resultType="board_img">
+			SELECT
+		    	bi.fname
+			FROM recomm rec, BOARD_IMG bi
+			WHERE rec.RECOM_ID = bi.RECOM_ID
+			AND bi.RECOM_ID = #{recom_id}
+		</select> 
+    
+</mapper> 
